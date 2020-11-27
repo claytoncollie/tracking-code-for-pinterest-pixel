@@ -46,8 +46,7 @@ function tracking_code_for_pinterest_pixel_do_the_script() {
 		pintrk(\'page\');
 		</script>
 		<noscript>
-		<img height="1" width="1" style="display:none;" alt=""
-		src="https://ct.pinterest.com/v3/?event=init&tid=%1$s&noscript=1" />
+		<img height="1" width="1" style="display:none;" alt="" src="https://ct.pinterest.com/v3/?event=init&tid=%1$s&noscript=1" />
 		</noscript>
 		<!-- end Pinterest Tag -->
 		',

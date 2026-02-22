@@ -5,27 +5,19 @@
  * @package Tracking_Code_For_Pinterest_Pixel
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
+namespace Tracking_Code_For_Pinterest_Pixel;
 
-add_action( 'wp_head', 'tracking_code_for_pinterest_pixel_do_the_script', 1, 0 );
+use function Tracking_Code_For_Pinterest_Pixel\get_the_id;
+
+add_action( 'wp_head', __NAMESPACE__ . '\tracking_script', 1 );
 /**
  * Output the tracking code snippet to the frontend.
  *
  * @return void
  * @since 1.0.0
  */
-function tracking_code_for_pinterest_pixel_do_the_script() {
-	/**
-	 * Filter the tag_id variable to support other methods of setting this value.
-	 *
-	 * @param string $tag_id The Pinterest Pixel tag ID.
-	 * @return string
-	 * @since 1.0.0
-	 */
-	$tag_id = apply_filters( 'tracking_code_for_pinterest_pixel_id', get_option( 'tracking_code_for_pinterest_pixel', '' ) );
+function tracking_script() : void {
+	$tag_id = get_the_id();
 
 	if ( '' === $tag_id ) {
 		return;

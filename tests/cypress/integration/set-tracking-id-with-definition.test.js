@@ -1,15 +1,11 @@
 describe("Set tracking ID with wp-config definition", () => {
   before(() => {
     cy.login();
-    cy.wpCli(
-      "config set TRACKING_CODE_FOR_PINTEREST_PIXEL_ID definition --add"
-    );
+    cy.activatePlugin("definition");
   });
 
   it("Is input field disabled?", () => {
     cy.visit("/wp-admin/options-general.php");
-    // Reload so PHP opcache picks up the wp-config.php change from before()
-    cy.reload();
     cy.get("#tracking_code_for_pinterest_pixel").should("be.disabled");
   });
 
@@ -30,6 +26,7 @@ describe("Set tracking ID with wp-config definition", () => {
   });
 
   after(() => {
-    cy.wpCli("config delete TRACKING_CODE_FOR_PINTEREST_PIXEL_ID");
+    cy.login();
+    cy.deactivatePlugin("definition");
   });
 });
